@@ -1,0 +1,83 @@
+---
+import DocLayout from '../../../layouts/DocLayout.astro';
+import { getCollection } from 'astro:content';
+import projects from '../../../data/projects.json';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  
+  return docs
+    .filter(doc => doc.id.includes('/') && !doc.id.endsWith('/overview'))
+    .map((doc) => {
+      const [project, ...slugParts] = doc.id.split('/');
+      const slug = slugParts.join('/').replace('.md', '');
+      
+      return {
+        params: { 
+          project,
+          slug 
+        },
+        props: { doc },
+      };
+    });
+}
+
+const { project, slug } = Astro.params;
+const { doc } = Astro.props;
+const { Content } = await doc.render();
+
+// Get project configuration from projects data
+const currentProject = projects.find(p => p.slug === project) || {
+  name: project!,
+  icon: '📚',
+  color: 'gray-700',
+  slug: project!
+};
+
+// Page info mapping
+const pageInfo: Record<string, Record<string, { title: string; description: string }>> = {
+  'fastcsv-ext': {
+    'installation': {
+      title: 'Installation - FastCSV-ext Documentation',
+      description: 'How to install FastCSV-ext PHP extension'
+    },
+    'quick-start': {
+      title: 'Quick Start - FastCSV-ext Documentation', 
+      description: 'Get started with FastCSV-ext in minutes'
+    },
+    'api-reference': {
+      title: 'API Reference - FastCSV-ext Documentation',
+      description: 'Complete API reference for FastCSV-ext'
+    }
+  },
+  'php-csv-helper': {
+    'installation': {
+      title: 'Installation - PHP-CSVHelper Documentation',
+      description: 'How to install PHP-CSVHelper library'
+    },
+    'quick-start': {
+      title: 'Quick Start - PHP-CSVHelper Documentation',
+      description: 'Get started with PHP-CSVHelper in minutes'
+    },
+    'api-reference': {
+      title: 'API Reference - PHP-CSVHelper Documentation',
+      description: 'Complete API reference for PHP-CSVHelper'
+    }
+  }
+};
+
+const currentPageInfo = pageInfo[project!]?.[slug!] || {
+  title: `${slug} - ${currentProject.name} Documentation`,
+  description: `${currentProject.name} ${slug} documentation`
+};
+---
+
+<DocLayout 
+  title={currentPageInfo.title}
+  description={currentPageInfo.description}
+  projectName={currentProject.name}
+  projectIcon={currentProject.icon}
+  projectColor={currentProject.color}
+>
+  <Content />
+</DocLayout> 

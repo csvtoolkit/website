@@ -1,0 +1,55 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import { getEntry } from 'astro:content';
+import projects from '../../data/projects.json';
+
+export async function getStaticPaths() {
+  // Generate paths for all projects that have documentation
+  const projectSlugs = projects
+    .filter(project => project.docsLink) // Only projects with docs
+    .map(project => ({
+      params: { slug: project.slug }
+    }));
+  
+  return projectSlugs;
+}
+
+const { slug } = Astro.params;
+
+// Get project data from projects.json
+const project = projects.find(p => p.slug === slug);
+if (!project) {
+  throw new Error(`Project not found: ${slug}`);
+}
+
+// Get the overview content for this project
+const overviewContent = await getEntry('docs', `${slug}/overview`);
+if (!overviewContent) {
+  throw new Error(`Overview content not found for project: ${slug}`);
+}
+const { Content } = await overviewContent.render();
+
+const isExperimental = project.status === 'experimental';
+---
+
+<DocLayout 
+  title={`${project.name} Documentation - CSVToolkit`}
+  description={project.shortDescription}
+  projectName={project.name}
+  projectIcon={project.icon}
+  projectColor={project.color}
+>
+  {isExperimental && (
+    <div class="mb-8 bg-gradient-to-r from-yellow-500/10 to-yellow-900/10 border border-yellow-600 dark:border-yellow-700 text-yellow-700 dark:text-yellow-300 rounded-xl shadow p-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-lg">⚠️</span>
+        <span class="font-bold">Experimental Status</span>
+      </div>
+      <div class="text-sm text-yellow-600 dark:text-yellow-200">
+        This project is currently in experimental phase. While it works correctly and passes all tests, please use with caution in production environments. We recommend thorough testing in your specific use case before deployment.
+      </div>
+    </div>
+  )}
+  
+  <Content />
+</DocLayout> 

@@ -1,0 +1,38 @@
+# Cache static assets for 1 year
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 month
+*.png
+  Cache-Control: public, max-age=2592000
+
+*.jpg
+  Cache-Control: public, max-age=2592000
+
+*.jpeg
+  Cache-Control: public, max-age=2592000
+
+*.svg
+  Cache-Control: public, max-age=2592000
+
+*.webp
+  Cache-Control: public, max-age=2592000
+
+# Cache Pagefind assets for 1 day (they can change with updates)
+/pagefind/*
+  Cache-Control: public, max-age=86400
+
+# Security headers for all pages
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# HTML pages - short cache with revalidation
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Root page
+/
+  Cache-Control: public, max-age=300, must-revalidate 

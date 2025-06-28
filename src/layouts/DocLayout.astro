@@ -1,0 +1,75 @@
+---
+import Layout from './Layout.astro';
+import projects from '../data/projects.json';
+
+interface Props {
+  title: string;
+  description?: string;
+  projectName: string;
+  projectIcon: string;
+  projectColor: string;
+}
+
+const { title, description, projectName, projectIcon, projectColor } = Astro.props;
+
+const project = projects.find(p => p.name === projectName);
+const projectSlug = project?.slug || projectName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+---
+
+<Layout title={title} description={description}>
+  <div class="w-full max-w-7xl mx-auto px-4 py-8">
+  
+    <div class="flex flex-col lg:flex-row gap-8">
+      <aside class="lg:w-64 flex-shrink-0" data-pagefind-ignore>
+        <div class="sticky top-24">
+          <div class={`bg-white/80 dark:bg-gray-900/80 border border-${projectColor} rounded-xl p-6 mb-6`}>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">{projectIcon}</span>
+              <h2 class="text-xl font-bold">{projectName}</h2>
+            </div>
+            <a href="/projects" class="text-sm text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+              ← Back to Projects
+            </a>
+          </div>
+          <nav class="bg-white/60 dark:bg-gray-900/60 rounded-xl p-4 border border-gray-200 dark:border-gray-800">
+            <h3 class="font-semibold mb-4 text-gray-900 dark:text-gray-100">Documentation</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href={`/docs/${projectSlug}`} 
+                   class="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  Overview
+                </a>
+              </li>
+              <li>
+                <a href={`/docs/${projectSlug}/installation`} 
+                   class="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  Installation
+                </a>
+              </li>
+              <li>
+                <a href={`/docs/${projectSlug}/quick-start`} 
+                   class="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  Quick Start
+                </a>
+              </li>
+              <li>
+                <a href={`/docs/${projectSlug}/api-reference`} 
+                   class="block px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  API Reference
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <main class="flex-1 min-w-0">
+        <article class="bg-white/80 dark:bg-gray-900/80 rounded-xl border border-gray-200 dark:border-gray-800 p-8" data-pagefind-body>
+          <div class="prose prose-gray dark:prose-invert max-w-none">
+            <slot />
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+</Layout> 

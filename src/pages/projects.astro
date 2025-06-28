@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import projects from '../data/projects.json';
+---
+
+<Layout title="Projects - CSVToolkit" description="Explore all CSVToolkit projects for high-performance CSV processing">
+	<div class="w-full max-w-6xl mx-auto px-4 py-12">
+		<!-- Hero Section -->
+		<section class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-6">
+				<span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Our Projects</span>
+			</h1>
+			<p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+				Discover our suite of high-performance CSV processing tools. From blazing-fast PHP extensions to zero-dependency C libraries, we're building the future of CSV processing.
+			</p>
+			<div class="flex flex-col sm:flex-row justify-center gap-4">
+				<a href="https://github.com/csvtoolkit" target="_blank" class="px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-800 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+					🐙 GitHub Organization
+				</a>
+			</div>
+		</section>
+
+		<!-- All Projects -->
+		<section class="mb-16">
+			<h2 class="text-2xl font-bold mb-8 text-center">All Projects</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				{projects.sort((a, b) => {
+					// Projects with docs first
+					if (a.docsLink && !b.docsLink) return -1;
+					if (!a.docsLink && b.docsLink) return 1;
+					return 0;
+				}).map(project => (
+					<div class={`bg-white/80 dark:bg-gray-900/80 border border-${project.color} rounded-2xl p-8 shadow-lg hover:scale-[1.02] transition-transform`}>
+						<div class="flex items-center gap-3 mb-4">
+							<span class="text-3xl">{project.icon}</span>
+							<h3 class="text-2xl font-bold">{project.name}</h3>
+						</div>
+						
+						<p class="text-gray-700 dark:text-gray-300 mb-6">{project.description}</p>
+						
+						<div class="mb-6">
+							<h4 class="font-semibold mb-3 text-gray-900 dark:text-gray-100">Key Features:</h4>
+							<ul class="space-y-2">
+								{project.features.map(feature => (
+									<li class="flex items-start gap-2 text-gray-600 dark:text-gray-400 text-sm">
+										<span class="text-green-500 mt-1">✓</span>
+										<span>{feature}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+						
+						<div class="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+							{project.docsLink ? (
+								<a 
+									href={project.docsLink} 
+									class={`flex-1 text-center px-4 py-2 rounded-lg bg-gradient-to-r from-${project.color.replace('-700', '-500')} to-${project.color.replace('-700', '-600')} text-white font-semibold hover:from-${project.color.replace('-700', '-400')} hover:to-${project.color.replace('-700', '-500')} transition-colors`}
+								>
+									📖 Documentation
+								</a>
+							) : (
+								<div class="flex-1 text-center px-4 py-2 rounded-lg bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-semibold cursor-not-allowed">
+									📖 Docs Coming Soon
+								</div>
+							)}
+							<a 
+								href={project.link} 
+								target="_blank" 
+								class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+							>
+								GitHub →
+							</a>
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Sponsorship Call-to-Action -->
+		<section class="bg-gradient-to-r from-purple-100 to-cyan-100 dark:from-purple-900/30 dark:to-cyan-900/30 rounded-2xl p-8 text-center border border-purple-200 dark:border-purple-800">
+			<div class="max-w-3xl mx-auto">
+				<h2 class="text-3xl font-bold mb-4 text-purple-800 dark:text-purple-300">Support Our Mission</h2>
+				<p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+					Help us build faster, greener, and more reliable CSV tools for developers and companies worldwide. Your sponsorship enables us to:
+				</p>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+					<div class="bg-white/60 dark:bg-gray-800/60 rounded-lg p-4">
+						<div class="text-2xl mb-2">🚀</div>
+						<div class="font-semibold text-sm">Accelerate Development</div>
+						<div class="text-xs text-gray-600 dark:text-gray-400">More features, faster releases</div>
+					</div>
+					<div class="bg-white/60 dark:bg-gray-800/60 rounded-lg p-4">
+						<div class="text-2xl mb-2">🌱</div>
+						<div class="font-semibold text-sm">Reduce Carbon Footprint</div>
+						<div class="text-xs text-gray-600 dark:text-gray-400">Lower infrastructure costs</div>
+					</div>
+					<div class="bg-white/60 dark:bg-gray-800/60 rounded-lg p-4">
+						<div class="text-2xl mb-2">🛠️</div>
+						<div class="font-semibold text-sm">Better Support</div>
+						<div class="text-xs text-gray-600 dark:text-gray-400">Dedicated maintenance</div>
+					</div>
+				</div>
+				<a 
+					href="https://github.com/sponsors/achrafAa" 
+					target="_blank"
+					class="inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold text-lg shadow-lg hover:from-purple-400 hover:to-cyan-400 transition-colors"
+				>
+					💜 Become a Sponsor
+				</a>
+				<p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
+					Join companies and developers who believe in high-performance, sustainable CSV processing
+				</p>
+			</div>
+		</section>
+	</div>
+</Layout> 

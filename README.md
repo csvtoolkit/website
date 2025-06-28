@@ -1,4 +1,90 @@
-# Astro Starter Kit: Minimal
+# CSVToolkit Website
+
+This is the official website for CSVToolkit, built with Astro and Tailwind CSS.
+
+## Features
+
+- 🎨 Modern and responsive design
+- 🌓 Dark mode support
+- 📝 Blog with MDX support
+- 🔍 Full-text search
+- 🚀 Fast and optimized
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/csvtoolkit/website.git
+   cd website
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:4321](http://localhost:4321) in your browser.
+
+## Development
+
+### Project Structure
+
+```
+src/
+├── components/     # Reusable components
+├── content/        # Blog posts and other content
+├── layouts/        # Page layouts
+└── pages/          # Route components
+```
+
+### Adding Content
+
+1. Create a new blog post in `src/content/blog/`:
+   ```md
+   ---
+   title: "Your Post Title"
+   description: "A brief description of your post"
+   date: 2024-03-13
+   author: "Your Name"
+   tags: ["tag1", "tag2"]
+   ---
+
+   Your post content here...
+   ```
+
+2. The post will be automatically available at `/blog/your-post-slug`.
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+The built site will be in the `dist/` directory.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ```sh
 npm create astro@latest -- --template minimal

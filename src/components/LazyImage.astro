@@ -1,0 +1,73 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  class: className = '', 
+  loading = 'lazy',
+  decoding = 'async'
+} = Astro.props;
+---
+
+<img 
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  class={className}
+  style={width && height ? `aspect-ratio: ${width}/${height}` : undefined}
+/>
+
+<script>
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          img.style.opacity = '0.5';
+          img.addEventListener('load', () => {
+            img.style.opacity = '1';
+          });
+      
+          observer.unobserve(img);
+        }
+      });
+    });
+    document.querySelectorAll('.lazy-image').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+</script>
+
+<style>
+  .lazy-image {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Fallback for browsers without loading="lazy" support */
+  @supports not (loading: lazy) {
+    .lazy-image {
+      opacity: 0.5;
+    }
+  }
+</style> 

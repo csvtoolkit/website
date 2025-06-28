@@ -1,0 +1,137 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "CSVToolkit - High-performance CSV processing tools" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="CSV, PHP, performance, library, extension, fast, memory efficient, cross-platform" />
+    <meta name="author" content="Achraf AAMRI" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={`https://csvtoolkit.org${Astro.url.pathname}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://csvtoolkit.org${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="CSVToolkit" />
+    <meta property="og:image" content="https://csvtoolkit.org/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://csvtoolkit.org/og-image.png" />
+    <meta name="twitter:creator" content="@achrafAa" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "CSVToolkit",
+        "description": "High-performance CSV processing tools for developers",
+        "url": "https://csvtoolkit.org",
+        "author": {
+          "@type": "Person",
+          "name": "Achraf AAMRI",
+          "url": "https://github.com/achrafAa"
+        },
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    
+    <title>{title}</title>
+    
+    <script>(function(){const e=localStorage.getItem("theme")||"dark";"dark"===e&&document.documentElement.classList.add("dark"),document.documentElement.style.setProperty("--initial-theme-loaded","1")})();</script>
+    <link rel="preload" href="/assets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/main.css"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://github.com">
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-gray-900 dark:text-gray-100 font-sans opacity-0 transition-opacity duration-300">
+    <div id="loading-overlay" class="fixed inset-0 z-50 bg-gray-50 dark:bg-gray-950 flex items-center justify-center transition-opacity duration-500">
+      <div class="flex flex-col items-center gap-4">
+        <div class="relative">
+          <div class="w-12 h-12 border-4 border-gray-200 dark:border-gray-700 rounded-full animate-spin border-t-cyan-500 border-r-cyan-400"></div>
+          <div class="absolute inset-2">
+            <div class="w-8 h-8 border-2 border-gray-300 dark:border-gray-600 rounded-full animate-spin border-b-purple-500" style="animation-direction: reverse; animation-duration: 0.8s;"></div>
+          </div>
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Loading CSVToolkit...</div>
+      </div>
+    </div>
+    <div class="fixed inset-0 pointer-events-none z-0 bg-gradient-to-br from-cyan-100/20 via-purple-100/20 to-transparent dark:from-cyan-900/10 dark:via-purple-900/10 dark:to-transparent" />
+    <header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-gray-950/80 backdrop-blur border-b border-gray-200 dark:border-gray-800" data-pagefind-ignore>
+      <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <a href="/" class="text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent tracking-tight">
+          CSVToolkit
+        </a>
+        <div class="flex items-center gap-4">
+          <div class="relative hidden md:block">
+            <input
+              type="search"
+              id="search"
+              placeholder="Search docs..."
+              class="w-64 px-4 py-2 pl-10 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+            />
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div id="search-results" class="absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hidden max-h-96 overflow-y-auto" data-pagefind-ignore></div>
+          </div>
+          
+          <a href="https://github.com/csvtoolkit" target="_blank" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-800 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors font-mono text-sm">GitHub</a>
+          <a href="https://github.com/sponsors/achrafAa" target="_blank" class="px-4 py-2 rounded-lg bg-pink-100 dark:bg-pink-900 border border-pink-300 dark:border-pink-700 text-pink-700 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-800 transition-colors font-mono text-sm flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+            </svg>
+            Sponsor
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" title="Toggle theme">
+            <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="relative z-10 flex flex-col items-center w-full min-h-[70vh] pt-12" data-pagefind-body>
+      <slot />
+    </main>
+
+
+    <footer class="w-full border-t border-gray-200 dark:border-gray-800 bg-gray-50/90 dark:bg-gray-950/90" data-pagefind-ignore>
+      <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col items-center justify-center text-center gap-4">
+                  <div class="text-lg text-gray-700 dark:text-gray-300">
+            CSVToolkit created and maintained by <a href="https://github.com/achrafAa" target="_blank" class="text-cyan-600 dark:text-cyan-400 hover:underline font-semibold">Achraf AAMRI</a>
+          </div>
+      </div>
+    </footer>
+    <script src="/assets/main.js" defer></script>
+  </body>
+</html> 

@@ -1,0 +1,75 @@
+[
+  {
+    "icon": "🧩",
+    "name": "FastCSV-ext",
+    "slug": "fastcsv-ext",
+    "status": "experimental",
+    "color": "cyan-700",
+    "shortDescription": "Supercharge PHP CSV processing with 3.6–4.8x faster performance and lower memory usage.",
+    "keyFeatures": [
+      "3.6–4.8x faster than PHP CSV using SPLFileObject",
+      "Cross-platform (Linux, macOS, Windows)",
+      "MIT License"
+    ],
+    "description": "A high-performance PHP extension for CSV file handling, providing significant improvements in speed and memory efficiency compared to PHP's native CSV functions.",
+    "features": [
+      "3.6-4.8x faster than native PHP CSV functions (validated by benchmarks)",
+      "Read: Up to 568K records/sec vs 156K (SplFileObject)",
+      "Combined: Up to 339K records/sec vs 136K (SplFileObject)",
+      "Built on top of FastCSV-C library",
+      "Supports PHP 8.2, 8.3, 8.4",
+      "Cross-platform (Linux, macOS, Windows)",
+      "MIT License"
+    ],
+    "link": "https://github.com/csvtoolkit/FastCSV-ext",
+    "docsLink": "/docs/fastcsv-ext"
+  },
+  {
+    "icon": "⚙️",
+    "name": "FastCSV-C",
+    "slug": "fastcsv-c",
+    "status": "experimental",
+    "color": "blue-700",
+    "shortDescription": "A blazing-fast, dependency-free C library for CSV parsing and writing at scale.",
+    "keyFeatures": [
+      "Zero dependencies",
+      "Thread-safe design",
+      "MIT License"
+    ],
+    "description": "A standalone, high-performance C library for CSV processing with minimal memory footprint.",
+    "features": [
+      "Zero dependencies",
+      "Thread-safe design",
+      "Cross-platform compatibility",
+      "Powers the FastCSV PHP extension",
+      "MIT License"
+    ],
+    "link": "https://github.com/csvtoolkit/FastCSV-C",
+    "docsLink": "/docs/fastcsv-c"
+  },
+  {
+    "icon": "🛠️",
+    "name": "PHP-CSVHelper",
+    "slug": "php-csv-helper",
+    "status": "experimental",
+    "color": "purple-700",
+    "shortDescription": "Modern PHP library with unified API and automatic performance boost.",
+    "keyFeatures": [
+      "Auto-uses FastCSV extension for efficiency and fallback to SplFileObject for reliability",
+      "Constant memory usage",
+      "MIT License"
+    ],
+    "description": "A modern PHP library that provides a unified interface for CSV processing, automatically using FastCSV when available.",
+    "features": [
+      "Intelligent Performance: Automatically uses FastCSV (3.6-4.8x faster) when available",
+      "Reliable Fallback: Falls back to optimized SplFileObject implementation",
+      "Memory Efficient: Constant memory usage with streaming for datasets of any size",
+      "Automatic implementation selection",
+      "Consistent API across implementations",
+      "Type-safe with full PHP 8.2+ features",
+      "MIT License"
+    ],
+    "link": "https://github.com/csvtoolkit/PHP-CSVHelper",
+    "docsLink": "/docs/php-csv-helper"
+  }
+] 
